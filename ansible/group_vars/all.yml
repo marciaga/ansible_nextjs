@@ -1,0 +1,10 @@
+region: us-east-1
+zone: us-east-1a
+keypair: KFFPDeploy
+security_groups: KFFP_Web
+instance_type: t2.micro
+volumes:
+  - device_name: /dev/sda1
+    device_type: gp2
+    volume_size: 20
+    delete_on_termination: true
