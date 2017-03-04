@@ -1,0 +1,23 @@
+machine:
+  node:
+    version: 6.9.1
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
+dependencies:
+  pre:
+    - pip install ansible boto awscli
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
+
+test:
+  override:
+    - yarn test
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - sh ./bin/prod_deploy.sh
