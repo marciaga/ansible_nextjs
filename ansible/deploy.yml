@@ -5,3 +5,8 @@
   roles:
     - role: launch
       name: ami-build
+
+- hosts: ami-build
+  roles:
+    - deploy
+    - nginx
