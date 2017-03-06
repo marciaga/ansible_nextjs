@@ -34,12 +34,15 @@
 
 - name: Install n
   npm: name=n global=yes
+  become: true
 
 - name: Change Node version
   command: n 6.9.1
+  become: true
 
 - name: Install pm2
   npm: name=pm2 global=yes production=yes
+  become: true
 
 - name: Install Dependencies
   command: yarn
