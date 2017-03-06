@@ -40,7 +40,10 @@
 
 - name: Install Dependencies
   command: yarn
+  args:
     chdir: /opt/app/ansible_nextjs
 
 - name: Build Application
   command: yarn build && yarn start
+  args:
+    chdir: /opt/app/ansible_nextjs
