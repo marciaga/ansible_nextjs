@@ -30,7 +30,6 @@
   with_items:
     - build-essential
     - nodejs
-    - npm
     - yarn
 
 - name: Install n
