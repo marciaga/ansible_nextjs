@@ -50,6 +50,11 @@
     chdir: /opt/app
 
 - name: Build Application
-  command: yarn build && yarn start
+  command: yarn build
+  args:
+    chdir: /opt/app
+
+- name: Start Application
+  command: yarn start
   args:
     chdir: /opt/app
