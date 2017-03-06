@@ -24,10 +24,10 @@
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 - name: Install Yarn
+  become: true
   apt:
     pkg: yarn
     state: latest
-    become: true
     update_cache: yes
 
 - name: Install n
