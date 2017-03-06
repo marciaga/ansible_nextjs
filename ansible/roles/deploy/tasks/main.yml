@@ -21,14 +21,17 @@
 - name: Prep Yarn install
   shell: >
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - &&
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-- name: Install Yarn
+- name: Install Node, npm, and Yarn
   become: true
-  apt:
-    pkg: yarn
-    state: latest
-    update_cache: yes
+  apt: name="{{ item }}" update_cache=yes state=latest
+  with_items:
+    - build-essential
+    - npm
+    - nodejs
+    - yarn
 
 - name: Install n
   npm: name=n global=yes
