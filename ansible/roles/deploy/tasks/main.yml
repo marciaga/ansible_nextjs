@@ -2,7 +2,7 @@
   apt:
     pkg: git
     state: present
-  sudo: yes
+  become: true
 
 - name: Create app directory
   file:
@@ -10,7 +10,7 @@
     owner: ubuntu
     group: ubuntu
     state: directory
-  sudo: yes
+  become: true
 
 - name: Clone repository
   git:
@@ -18,15 +18,29 @@
     dest: /opt/app
     version: master
 
-- name: Install upstart script
-  copy:
-    src: upstart.conf
-    dest: /etc/upstart/app.conf
-  sudo: yes
+- name: Prep Yarn install
+  shell: >
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list &&
 
-- name: Enable and start the application
-  service:
-    name: app
-    enabled: yes
-    state: restarted
-  sudo: yes
+- name: Install Yarn
+  apt:
+    pkg: yarn
+    state: latest
+    update_cache: yes
+
+- name: Install n
+  npm: name=n global=yes
+
+- name: Change Node version
+  command: n 6.9.1
+
+- name: Install pm2
+  npm: name=pm2 global=yes production=yes
+
+- name: Install Dependencies
+  command: yarn
+    chdir: /opt/app/ansible_nextjs
+
+- name: Build Application
+  command: yarn build && yarn start
