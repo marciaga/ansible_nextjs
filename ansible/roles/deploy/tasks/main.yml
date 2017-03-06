@@ -27,6 +27,7 @@
   apt:
     pkg: yarn
     state: latest
+    become: true
     update_cache: yes
 
 - name: Install n
