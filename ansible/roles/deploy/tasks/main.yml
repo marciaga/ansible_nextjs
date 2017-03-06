@@ -55,6 +55,6 @@
     chdir: /opt/app
 
 - name: Start Application
-  command: yarn start
+  command: pm2 start npm --name app --env production -- start
   args:
     chdir: /opt/app
