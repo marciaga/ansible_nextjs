@@ -24,7 +24,7 @@
   connection: local
   gather_facts: no
   roles:
-    - create-ami
+    - build-ami
     - create-launch-configuration
     - load-balancer
     - auto-scaling
@@ -37,5 +37,7 @@
     - delete-old-amis
 
 - hosts: old-ami-build
+  connection: local
+  gather_facts: no
   roles:
     - terminate
