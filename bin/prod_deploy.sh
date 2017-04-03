@@ -1,1 +1,1 @@
-ansible-playbook ansible/deploy.yml -vv
+cd ../ansible && ansible-playbook ansible/deploy.yml -vvv
