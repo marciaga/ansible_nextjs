@@ -1,7 +1,7 @@
 region: us-west-2
 zone: us-west-2a
-keypair: KFFPDeploy
-security_groups: KFFP_Web
+keypair: KFFP_DEPLOY
+security_groups: KFFP_WEB
 instance_type: t2.micro
 volumes:
   - device_name: /dev/sda1
