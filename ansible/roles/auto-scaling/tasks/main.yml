@@ -7,6 +7,9 @@
     asg_properties: "{{ (asg_properties_result.stdout | from_json).AutoScalingGroups[0] }}"
   when: (asg_properties_result.stdout | from_json).AutoScalingGroups | count
 
+- name: Debug ASG Var
+  debug: msg="{{ asg_properties.DesiredCapacity}}"
+
 - name: Configure Auto Scaling Group and perform rolling deploy
   ec2_asg:
     region: "{{ region }}"
