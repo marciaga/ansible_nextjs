@@ -17,7 +17,7 @@
     health_check_period: 300
     desired_capacity: "{{ asg_properties.DesiredCapacity | default(1) | int }}"
     replace_all_instances: yes
-    replace_batch_size: "{{ (asg_properties.DesiredCapacity | default(1) | int }}"
+    replace_batch_size: "{{ asg_properties.DesiredCapacity | default(1) | int }}"
     min_size: 1
     max_size: 3
     load_balancers:
