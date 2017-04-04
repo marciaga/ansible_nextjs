@@ -7,9 +7,6 @@
     asg_properties: "{{ (asg_properties_result.stdout | from_json).AutoScalingGroups[0] }}"
   when: (asg_properties_result.stdout | from_json).AutoScalingGroups | count
 
-- name: Debug ASG Var
-  debug: msg="{{ asg_properties.DesiredCapacity}}"
-
 - name: Configure Auto Scaling Group and perform rolling deploy
   ec2_asg:
     region: "{{ region }}"
@@ -18,9 +15,9 @@
     availability_zones: "{{ zone }}"
     health_check_type: ELB
     health_check_period: 300
-    desired_capacity: "{{ asg_properties.DesiredCapacity | default(1) }}"
+    desired_capacity: "{{ asg_properties.DesiredCapacity | default(1) | int }}"
     replace_all_instances: yes
-    replace_batch_size: "{{ (asg_properties.DesiredCapacity | default(1) / 2) | round(0, 'ceil') | int }}"
+    replace_batch_size: "{{ (asg_properties.DesiredCapacity | default(1) | int }}"
     min_size: 1
     max_size: 3
     load_balancers:
