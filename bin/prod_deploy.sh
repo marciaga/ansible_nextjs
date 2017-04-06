@@ -1,1 +1,1 @@
-cd /home/ubuntu/ansible_nextjs/ansible && ansible-playbook deploy.yml -vv
+cd /home/ubuntu/ansible_nextjs/ansible && ansible-playbook deploy.yml -vvv
