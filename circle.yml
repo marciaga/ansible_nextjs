@@ -8,7 +8,7 @@ dependencies:
   pre:
     - pip install ansible awscli
     - pip install --upgrade setuptools
-    - sudo pip install boto3 --upgrade
+    - sudo pip install boto3 boto --upgrade
   override:
     - yarn
   cache_directories:
