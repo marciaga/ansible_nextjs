@@ -15,9 +15,9 @@
     availability_zones: "{{ zone }}"
     health_check_type: ELB
     health_check_period: 300
-    desired_capacity: 1
+    desired_capacity: 1 # "{{ asg_properties.DesiredCapacity | default(1) | int }}"
     replace_all_instances: yes
-    replace_batch_size: 1
+    replace_batch_size: 1 # "{{ asg_properties.DesiredCapacity | default(1) | int }}"
     min_size: 1
     max_size: 3
     load_balancers:
