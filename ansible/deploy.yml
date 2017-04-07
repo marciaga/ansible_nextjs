@@ -10,7 +10,7 @@
 
 - hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: yes 
   roles:
     - role: launch
       name: ami-build
