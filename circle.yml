@@ -6,8 +6,9 @@ machine:
 
 dependencies:
   pre:
-    - sudo pip install setuptools --upgrade
-    - sudo pip install ansible awscli boto --upgrade
+    - pip install ansible awscli
+    - pip install --upgrade setuptools
+    - sudo pip install boto --upgrade
   override:
     - yarn
   cache_directories:
