@@ -7,11 +7,19 @@
     asg_properties: "{{ (asg_properties_result.stdout | from_json).AutoScalingGroups[0] }}"
   when: (asg_properties_result.stdout | from_json).AutoScalingGroups | count
 
+- ec2_lc_find:
+    name_regex: webapp*
+    sort_order: descending
+    register: lc_name
+
+- debug:
+    var: lc_name
+
 - name: Configure Auto Scaling Group and perform rolling deploy
   ec2_asg:
     region: "{{ region }}"
     name: webapp
-    launch_config_name: webapp
+    launch_config_name: lc_name
     availability_zones: "{{ zone }}"
     health_check_type: ELB
     health_check_period: 300
