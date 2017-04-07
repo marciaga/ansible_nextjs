@@ -7,10 +7,11 @@
     asg_properties: "{{ (asg_properties_result.stdout | from_json).AutoScalingGroups[0] }}"
   when: (asg_properties_result.stdout | from_json).AutoScalingGroups | count
 
-- ec2_lc_find:
+- name:
+  ec2_lc_find:
     name_regex: webapp*
     sort_order: descending
-    register: lc_name
+  register: lc_name
 
 - debug:
     var: lc_name
