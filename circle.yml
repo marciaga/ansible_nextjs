@@ -6,9 +6,11 @@ machine:
 
 dependencies:
   pre:
-    - pip install ansible awscli
-    - pip install --upgrade setuptools
-    - sudo pip install boto3 boto --upgrade
+    - sudo apt-get install software-properties-common
+    - sudo apt-add-repository ppa:ansible/ansible -y
+    - sudo apt-get update
+    - sudo apt-get install ansible
+    - sudo pip install awscli boto setuptools --upgrade
   override:
     - yarn
   cache_directories:
