@@ -10,6 +10,7 @@
 - name:
   ec2_lc_find:
     name_regex: webapp*
+    region: "{{ region }}"
     sort_order: descending
   register: lc_name
 
@@ -20,7 +21,7 @@
   ec2_asg:
     region: "{{ region }}"
     name: webapp
-    launch_config_name: lc_name
+    launch_config_name: "{{ lc_name.name }}"
     availability_zones: "{{ zone }}"
     health_check_type: ELB
     health_check_period: 300
