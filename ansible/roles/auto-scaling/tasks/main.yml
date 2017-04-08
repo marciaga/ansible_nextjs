@@ -30,8 +30,11 @@
     load_balancers:
       - webapp
     state: present
-    wait_timeout: 500
+    wait_timeout: 300
   register: asg_result
+  until: asg_result.viable_instances|int >= asg_desired_capacity|int
+  delay: 10
+  retries: 120
 
 - name: Configure Scaling Policies
   ec2_scaling_policy:
