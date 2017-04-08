@@ -32,7 +32,7 @@
     state: present
     wait_timeout: 300
   register: asg_result
-  until: asg_result.viable_instances|int >= asg_desired_capacity|int
+  until: asg_result.viable_instances|int >= 1
   delay: 10
   retries: 120
 
