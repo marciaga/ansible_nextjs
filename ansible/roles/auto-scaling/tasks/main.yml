@@ -31,10 +31,10 @@
       - webapp
     state: present
     wait_timeout: 300
-  register: asg_result
   until: asg_result.viable_instances|int >= 1
   delay: 10
   retries: 120
+  register: asg_result
 
 - name: Configure Scaling Policies
   ec2_scaling_policy:
