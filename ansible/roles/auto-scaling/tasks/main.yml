@@ -35,6 +35,7 @@
   delay: 10
   retries: 120
   register: asg_result
+  debug: var=asg_result
 
 - name: Configure Scaling Policies
   ec2_scaling_policy:
