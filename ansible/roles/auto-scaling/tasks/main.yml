@@ -74,6 +74,9 @@
         alarm_actions:
           - "{{ sp_result.results[1].arn }}"
 
+- name: Debug
+  debug: var=asg_result
+
 - name: Configure Metric Alarms and link to Scaling Policies
   ec2_metric_alarm:
     region: "{{ region }}"
@@ -91,5 +94,5 @@
       AutoScalingGroupName: "{{ asg_name }}"
     alarm_actions: "{{ item.alarm_actions }}"
   with_items: metric_alarms
-  when: asg_result.max_size > 1
+#  when: asg_result.max_size > 1
   register: ma_result
