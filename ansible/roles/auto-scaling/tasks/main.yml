@@ -25,11 +25,12 @@
     desired_capacity: 1 # "{{ asg_properties.DesiredCapacity | default(1) | int }}"
     replace_all_instances: yes
     replace_batch_size: 1 # "{{ asg_properties.DesiredCapacity | default(1) | int }}"
-    min_size: 1
+    min_size: 0
     max_size: 3
     load_balancers:
       - webapp
     state: present
+    wait_timeout: 500
   register: asg_result
 
 - name: Configure Scaling Policies
