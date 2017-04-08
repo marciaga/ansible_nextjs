@@ -10,7 +10,7 @@
 
 - hosts: localhost
   connection: local
-  gather_facts: yes 
+  gather_facts: yes
   roles:
     - role: launch
       name: ami-build
@@ -22,7 +22,6 @@
 
 - hosts: ami-build
   connection: local
-  gather_facts: no
   roles:
     - build-ami
     - create-launch-configuration
@@ -38,6 +37,5 @@
 
 - hosts: old-ami-build
   connection: local
-  gather_facts: no
   roles:
     - terminate
